@@ -63,8 +63,6 @@
                                         {
                                             @Html.ActionLink("Sil", "Delete", new { id = item.IhbarId }, new { @class = " btn btn-danger" })
                                         }
-
-
                                     </td>
                                 </tr>
                             }
@@ -75,64 +73,14 @@
         </div>
     </div>
 </main>
-@*@if (ViewBag.durum == true)
-    {
-        <main>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="tile">
-                        <div class="tile-body">
-                            <h3 class="title"> Kayıtlı Durumlar </h3>
-                            <table class="table table-hover table-bordered dataTable no-footer">
-                                <thead>
-                                    <tr role="row">
-                                        <th> IhbarId </th>
-                                        <th> Tarih </th>
-                                        <th> Durum </th>
-                                        <th> Değiştir </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    @foreach (var item in (ViewBag.Sorgu as List<SahipsizHayvanlar1.Models.Durum>))
-                                    {
-                                        <tr role="row" class="odd">
-                                            <td class=""> @Html.DisplayFor(modelItem => item.IhbarId)</td>
-                                            <td class=""> @Html.DisplayFor(modelItem => item.DurumTarih)</td>
-                                            <td class=""> @Html.DisplayFor(modelItem => item.Acıklama)</td>
-
-                                            <td>
-                                                @Html.ActionLink("Düzenle", "Edit", "Durums", new { id = item.AcıklamaId }, new { @class = "btn btn-info" })
-
-                                                @if (user.Yetki == "admin" || user.Yetki == "yönetici")
-                                                {
-                                                    @Html.ActionLink("Sil", "Delete", "Durums", new { id = item.AcıklamaId }, new { @class = " btn btn-danger" })
-                                                }
-
-                                            </td>
-
-                                        </tr>
-                                    }
-                                </tbody>
-
-                            </table>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>}*@
-
 <div class="modal fade bd-example-modal-lg" id="durumModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="d-flex justify-content-center">
             <div class="modal-content">
-
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"> Kayıtlı Durumlar </h5>
                 </div>
                 <br />
-
                 <table class="table table-hover table-bordered dataTable no-footer" id="employeeTable">
 
                     <thead id="tblHead">
@@ -142,7 +90,6 @@
                             <th> Durum </th>
                         </tr>
                     </thead>
-
                 </table>
                 <br />
                 <div class="modal-footer">
@@ -150,16 +97,5 @@
                 </div>
             </div>
         </div>
-           <!-- <br />
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-dark" data-dismiss="modal"> Kapat </button>
-                </div>
-           -->
         </div>
 </div>
-
-
-
-
-    
-
