@@ -1,0 +1,60 @@
+﻿@model SahipsizHayvanlar1.Models.Durum
+
+@{
+    ViewBag.Title = "Delete";
+ 
+}
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i> Durum Sil </h1>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"> Durumlar </li>
+        <li class="breadcrumb-item active"><a href="#"> Durum Sil </a></li>
+    </ul>
+</div>
+
+<div class="tile">
+    <h3 class="title">Bu Durumu Silmek İstediğinize Emin Misiniz?</h3>
+    <h4 class="title">Durum</h4>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                <label>İhbar Id</label>
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IhbarId)
+            </dd>
+
+            <dt>
+                <label>Tarih</label>
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DurumTarih)
+            </dd>
+
+            <dt>
+                <label>Durum</label>
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Aciklama)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Sil" class="btn btn-default" style="background-color:#ff0000; color:#ffffff;" /> |
+                @Html.ActionLink("Listeye Geri Dön", "Index","Ihbars")
+            </div>
+        }
+    </div>
+</div>
