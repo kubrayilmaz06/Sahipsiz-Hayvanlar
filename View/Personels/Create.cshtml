@@ -1,0 +1,76 @@
+﻿@model SahipsizHayvanlar1.Models.Personel
+@{
+    ViewBag.Title = "Create";
+}
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i> Personel Kayıt </h1>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"> Personeller </li>
+        <li class="breadcrumb-item active"><a href="#"> Personel Ekle </a></li>
+    </ul>
+</div>
+
+@using (Html.BeginForm("Create", "Personels", FormMethod.Post, new { @id = "PersonelFormu" }))
+{
+    @Html.AntiForgeryToken()
+    <form>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <h3 class="title">Personel Ekle</h3>
+                    <hr />
+                    <div class="form-group">
+                        @Html.ValidationSummary(true, "", new { @class = "form-row" })
+                        <div class="col-md-2">
+                            <label>Personel Adı</label>
+                            @Html.TextBoxFor(model => model.PersonelAdi,  new { @class = "form-control" })
+
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <label>Personel Soyadı</label>
+                                @Html.TextBoxFor(model => model.PersonelSoyadi,  new { @class = "form-control" })
+
+                            </div>
+                            <div class="col-md-2">
+                                <label>Telefon No</label>
+                                @Html.TextBoxFor(model => model.PersonelTel,  new { @class = "form-control" })
+
+                            </div>
+
+                            <div class="col-md-2">
+                                <label>Kullanıcı Adı</label>
+                                @Html.TextBoxFor(model => model.KulAdi, new { @class = "form-control" })
+
+                            </div>
+
+                            <div class="col-md-2">
+                                <label>Şifre</label>
+                                @Html.PasswordFor(model => model.Sifre, new { @class = "form-control" })
+
+                            </div>
+                            <div class="col-md-3">
+                                <label>Yetki</label>
+                                @Html.DropDownList("Yetki", new SelectList(ViewBag.Yetki, "Value", "Text"), "Kategori Seçiniz", new { @class = "form-control select2" } )
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions no-color">
+                        <div class="col-md-2">
+                            <input type="submit" value="Ekle" class="btn btn-default" style="background-color:#28a745; color:#ffffff;" />
+                            @Html.ActionLink("Listeye Geri Dön", "Index")
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+}
+
