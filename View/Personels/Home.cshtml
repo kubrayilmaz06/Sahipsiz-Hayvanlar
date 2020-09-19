@@ -1,0 +1,76 @@
+﻿@model SahipsizHayvanlar1.Models.Personel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Home";
+    var user = (Session["PersonelId"]) as SahipsizHayvanlar1.Models.Personel;
+}
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i> Personeller Bilgileri </h1>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"> Personeller </li>
+        <li class="breadcrumb-item active"><a href="#"> Ben </a></li>
+    </ul>
+</div>
+<main>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <h4 class="title"> Kişisel Bilgilerim </h4>
+                <div>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            <label> PERSONEL ADI </label>
+                        </dt>
+
+                        <dd>
+                            @user.PersonelAdi
+                        </dd>
+
+                        <dt>
+                            <label> PERSONEL SOYADI </label>
+                        </dt>
+
+                        <dd>
+                            @user.PersonelSoyadi
+                        </dd>
+
+                        <dt>
+                            <label> TELEFON NUMARASI </label>
+                        </dt>
+
+                        <dd>
+                            @user.PersonelTel
+                        </dd>
+                        <dt>
+                            <label> KULLANICI ADI </label>
+                        </dt>
+
+                        <dd>
+                            @user.KulAdi
+                        </dd>
+
+                        <dt>
+                            <label> ŞİFRE </label>
+                        </dt>
+                        <dd>
+                            ********
+                        </dd>
+
+                        <dt>
+                            <label> YETKİ </label>
+                        </dt>
+                        <dd>
+                            @user.Yetki
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
