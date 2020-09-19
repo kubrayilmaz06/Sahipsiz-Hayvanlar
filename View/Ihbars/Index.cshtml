@@ -1,0 +1,165 @@
+﻿@model IEnumerable<SahipsizHayvanlar1.Models.Ihbar>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+
+    var user = (Session["PersonelId"]) as SahipsizHayvanlar1.Models.Personel;
+}
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i> İhbar Listesi </h1>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"> İhbarlar </li>
+        <li class="breadcrumb-item active"><a href="#"> Kayıtlı İhbarlar </a></li>
+    </ul>
+</div>
+<main>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-title-w-btn">
+                    <h3 class="title"> Kayıtlı İhbarlar </h3>
+                    <p>
+                        @Html.ActionLink("İhbar Ekle", "Create", new { }, new { @class = "btn btn-success" })
+                    </p>
+                </div>
+                <div class="tile-body">
+                    <table class="table table-hover table-bordered dataTable no-footer">
+                        <thead>
+                            <tr role="row">
+
+                                <th>Protokol No</th>
+                                <th>Adı Soyadı</th>
+                                <th>İletişim</th>
+                                <th>Tarih</th>
+                                <th>Eşgal</th>
+                                <th>Küpe No</th>
+                                <th>Teşhis</th>
+                                <th>Değiştir</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr role="row" class="odd">
+                                    <td class=""> @Html.DisplayFor(modelItem => item.ProtokolNo)</td>
+                                    <td class="sorting_1"> @Html.DisplayFor(modelItem => item.AdSoyad)</td>
+                                    <td> @Html.DisplayFor(modelItem => item.IhbarIletisim)  </td>
+                                    <td class="">@item.IhbarTarih.ToShortDateString()</td>
+                                    <td> @Html.DisplayFor(modelItem => item.Esgal)</td>
+                                    <td class=""> @Html.DisplayFor(modelItem => item.KupeNo)</td>
+                                    <td> @Html.DisplayFor(modelItem => item.Teshis)</td>
+
+                                    <td>
+                                        <button class="btn btn-warning" type="button" data-toggle="modal" data-target="#durumModal" data-id="@item.IhbarId">Durum</button>
+
+                                        @Html.ActionLink("Düzenle", "Edit", new { id = item.IhbarId }, new { @class = "btn btn-info" })
+
+                                        @if (user.Yetki == "admin" || user.Yetki == "yönetici")
+                                        {
+                                            @Html.ActionLink("Sil", "Delete", new { id = item.IhbarId }, new { @class = " btn btn-danger" })
+                                        }
+
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+@*@if (ViewBag.durum == true)
+    {
+        <main>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tile">
+                        <div class="tile-body">
+                            <h3 class="title"> Kayıtlı Durumlar </h3>
+                            <table class="table table-hover table-bordered dataTable no-footer">
+                                <thead>
+                                    <tr role="row">
+                                        <th> IhbarId </th>
+                                        <th> Tarih </th>
+                                        <th> Durum </th>
+                                        <th> Değiştir </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in (ViewBag.Sorgu as List<SahipsizHayvanlar1.Models.Durum>))
+                                    {
+                                        <tr role="row" class="odd">
+                                            <td class=""> @Html.DisplayFor(modelItem => item.IhbarId)</td>
+                                            <td class=""> @Html.DisplayFor(modelItem => item.DurumTarih)</td>
+                                            <td class=""> @Html.DisplayFor(modelItem => item.Acıklama)</td>
+
+                                            <td>
+                                                @Html.ActionLink("Düzenle", "Edit", "Durums", new { id = item.AcıklamaId }, new { @class = "btn btn-info" })
+
+                                                @if (user.Yetki == "admin" || user.Yetki == "yönetici")
+                                                {
+                                                    @Html.ActionLink("Sil", "Delete", "Durums", new { id = item.AcıklamaId }, new { @class = " btn btn-danger" })
+                                                }
+
+                                            </td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>}*@
+
+<div class="modal fade bd-example-modal-lg" id="durumModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="d-flex justify-content-center">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"> Kayıtlı Durumlar </h5>
+                </div>
+                <br />
+
+                <table class="table table-hover table-bordered dataTable no-footer" id="employeeTable">
+
+                    <thead id="tblHead">
+                        <tr>
+                            <th> İhbar Id </th>
+                            <th> Tarih </th>
+                            <th> Durum </th>
+                        </tr>
+                    </thead>
+
+                </table>
+                <br />
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal"> Kapat </button>
+                </div>
+            </div>
+        </div>
+           <!-- <br />
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal"> Kapat </button>
+                </div>
+           -->
+        </div>
+</div>
+
+
+
+
+    
+
